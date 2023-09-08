@@ -32,6 +32,7 @@
         - neovim
         - neofetch
         - htop
+        - zsh
       state: present
    
   - name: Install docker
