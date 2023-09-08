@@ -64,6 +64,10 @@
       insertafter: "plugins=(git)"
       backup: yes
 
+  - name: Change shell to zsh
+    shell: chsh -s /bin/zsh root
+    when: shell.stdout.find('zsh') != -1
+
   - name: Install docker
     apt:
       name: docker.io
