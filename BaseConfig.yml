@@ -47,7 +47,8 @@
     shell: echo "--unattended" | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     args:
       creates: /root/.oh-my-zsh
-    when: shell.stdout.find('zsh') != -1
+    when: shell.stdout != '/bin/zsh'
+
 
   - name: Change Oh My Zsh theme
     replace:
@@ -66,7 +67,7 @@
 
   - name: Change shell to zsh
     shell: chsh -s /bin/zsh root
-    when: shell.stdout.find('zsh') != -1
+    when: shell.stdout != '/bin/zsh'
 
   - name: Install docker
     apt:
@@ -78,3 +79,4 @@
       name: docker
       state: started
       enabled: yes  
+
