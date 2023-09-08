@@ -35,23 +35,25 @@
         - zsh
       state: present
    
-  - name: Install docker
-    apt:
-      name: docker.io
-      state: present
+  - name: Check if current shell is zsh
+    shell: echo $SHELL
+    register: shell
+    changed_when: false
+    failed_when: false
+  
+  
 
-
-
-  - name: Install oh my zsh
-    shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  - name: Install Oh My Zsh
+    shell: echo "--unattended" | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     args:
       creates: /root/.oh-my-zsh
+    when: shell.stdout.find('zsh') != -1
 
-  - name: Change oh my zsh theme
+  - name: Change Oh My Zsh theme
     replace:
       path: /root/.zshrc
       regexp: 'ZSH_THEME="robbyrussell"'
-      replace: 'ZSH_THEME="agnoster"'  
+      replace: 'ZSH_THEME="gianu"'  
   
   - name: Add alias to zshrc
     lineinfile:
@@ -62,5 +64,13 @@
       insertafter: "plugins=(git)"
       backup: yes
 
+  - name: Install docker
+    apt:
+      name: docker.io
+      state: present
   
-  
+  - name: Start and enable Docker
+    service:
+      name: docker
+      state: started
+      enabled: yes  
