@@ -3,13 +3,13 @@
   - name: Comment Ceph PVE Subscription repos
     replace:
        path: /etc/apt/sources.list.d/ceph.list
-       regexp: 'deb'
+       regexp: '^deb'
        replace: '#deb'
 
   - name: Comment PVE Subscription repos
     replace:
        path: /etc/apt/sources.list.d/pve-enterprise.list
-       regexp: 'deb'
+       regexp: '^deb'
        replace: '#deb'
 
   - name: "Create file for Non Subscription PVE repo"
@@ -39,20 +39,7 @@
       name: docker.io
       state: present
 
-  - name: Add portainer container
-    docker_container:
-      name: portainer
-      image: portainer/portainer-ce
-      restart_policy: unless-stopped
-      ports:
-        - "8000:8000"
-        - "9000:9000"
-        - "9443:9443"
-      volumes:
-        - /var/run/docker.sock:/var/run/docker.sock
-        - portainer_data:/data
-      state: started
-      recreate: yes
+
 
   - name: Install oh my zsh
     shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
