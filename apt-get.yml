@@ -1,6 +1,24 @@
 - hosts: Proxmox
   tasks:
-  - name: Update and upgrade apt packages
+  - name: Comment Ceph PVE Subscription repos
+    replace:
+       path: /etc/apt/sources.list.d/ceph.list
+       regexp: 'deb'
+       replace: '#deb'
+
+  - name: Comment PVE Subscription repos
+    replace:
+       path: /etc/apt/sources.list.d/pve-enterprise.list
+       regexp: 'deb'
+       replace: '#deb'
+
+  - name: "Create file for Non Subscription PVE repo"
+    copy:
+      dest: "/etc/apt/sources.list.d/pve-non-subscription.list"
+      content: |
+        deb http://download.proxmox.com/debian/pve bookworm pve-no-subscription
+
+  - name: Update cache
     apt:
       upgrade: yes
       update_cache: yes
