@@ -14,9 +14,9 @@
       full: no
     register: vmCreated
 
-    - name: Wait VM to be created
-      shell: sleep 10
-      when : vmCreated.changed
+  - name: Wait VM to be created
+    shell: sleep 10
+    when : vmCreated.changed
 
   - name: Update Rancher VM Settings
     community.general.proxmox_kvm:
