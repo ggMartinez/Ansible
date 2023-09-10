@@ -6,7 +6,7 @@
     - proxmoxUser: root@pam
     - proxmoxPassword: maiden
     - proxmoxNode: vm2
-    - proxmoxCentosTemplate: centos7
+    - proxmoxCentosTemplate: Centos7
   tasks:
     - name: Create Rancher VM
       community.general.proxmox_kvm:
