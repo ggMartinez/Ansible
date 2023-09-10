@@ -1,6 +1,6 @@
   - name: Set Variables
     set_fact:
-      vmName: K8s---Rancher
+      vmName: K8s---Master01
       diskStorage: local-lvm
 
   - name: Create VM | {{ vmName }}
