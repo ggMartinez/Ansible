@@ -38,7 +38,7 @@
       api_user: "{{ proxmoxUser }}"
       api_password: "{{ proxmoxPassword }}"
       api_host: "{{ proxmoxIP }}"
-      vmid: "{{ vmName }}"
+      name: "{{ vmName }}"
       disk: scsi1
       format: qcow2
       storage: local
@@ -51,7 +51,7 @@
       api_user: "{{ proxmoxUser }}"
       api_password: "{{ proxmoxPassword }}"
       api_host: "{{ proxmoxIP }}"
-      vmid: "{{ vmName }}"
+      name: "{{ vmName }}"
       disk: scsi1
       format: qcow2
       storage: local
