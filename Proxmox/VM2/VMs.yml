@@ -1,0 +1,18 @@
+- hosts: all
+  vars:
+    - proxmoxIP: "vm2.ggmartinez.duckdns.org"
+    - proxmoxUser: "root@pam"
+    - proxmoxPassword: "password"
+    - proxmoxNode: "vm2"
+    - proxmoxCentosTemplate: "centos7"
+  tasks:
+  - name: Create Rancher VM
+    community.general.proxmox_kvm:
+      api_user: {{ proxmoxUser }}
+      api_password: {{ proxmoxPassword }}
+      api_host: {{ proxmoxIP }}
+      clone: {{ proxmoxCentosTemplate }}
+      name: K8s---Rancher
+      node: vm2
+      full: no
+      storage: local-lvm
