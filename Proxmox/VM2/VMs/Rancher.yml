@@ -4,9 +4,9 @@
 
   - name: Create Rancher VM
     community.general.proxmox_kvm:
-      api_user: "{{ proxmoxUser }}"
-      api_password: "{{ proxmoxPassword }}"
-      api_host: "{{ proxmoxIP }}"
+      api_user: {{ proxmoxUser }}
+      api_password: {{ proxmoxPassword }}
+      api_host: {{ proxmoxIP }}
       clone: {{ proxmoxCentosTemplate }}
       name: {{ vmName }}
       node: {{ proxmoNode }}
@@ -16,10 +16,10 @@
 
   - name: Update Rancher VM Settings
     community.general.proxmox_kvm:
-      api_user: "{{ proxmoxUser }}"
-      api_password: "{{ proxmoxPassword }}"
-      api_host: "{{ proxmoxIP }}"
-      name: "{{ vmName }}"
+      api_user: {{ proxmoxUser }}
+      api_password: {{ proxmoxPassword }}
+      api_host: {{ proxmoxIP }}
+      name: {{ vmName }}
       cores: 2
       memory: 2048
       nameservers: "192.168.1.254"
