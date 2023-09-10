@@ -9,11 +9,14 @@
         node: vm2
         proxmox_default_behavior: "no_defaults"
         full: no
+        register: VM
+
     - name: Update Rancher VM Settings
       community.general.proxmox_kvm:
         api_user: "{{ proxmoxUser }}"
         api_password: "{{ proxmoxPassword }}"
         api_host: "{{ proxmoxIP }}"
+        name: VM.name
         cores: 2
         memory: 2048
         nameservers: "192.168.1.254"
