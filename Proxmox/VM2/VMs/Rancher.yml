@@ -14,7 +14,6 @@
       proxmox_default_behavior: "no_defaults"
       full: no
       onboot: yes
-      state: started
     register: vmCreated
 
   - name: Wait VM to be created
