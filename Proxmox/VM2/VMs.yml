@@ -27,4 +27,5 @@
         virtio:
           virtio0: 'local-lvm:10'
           virtio1: 'local-lvm:10'
+        update: true
       
