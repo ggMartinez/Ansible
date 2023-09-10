@@ -7,7 +7,7 @@
       api_user: "{{ proxmoxUser }}"
       api_password: "{{ proxmoxPassword }}"
       api_host: "{{ proxmoxIP }}"
-      clone: "{{ proxmoxCentosTemplate }}"
+      clone: {{ proxmoxCentosTemplate }}
       name: {{ vmName }}
       node: {{ proxmoNode }}
       proxmox_default_behavior: "no_defaults"
