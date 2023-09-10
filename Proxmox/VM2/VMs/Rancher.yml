@@ -1,13 +1,4 @@
-- hosts: 127.0.0.1
-  connection: local
-  gather_facts: no
-  vars:
-    - proxmoxIP: vm2.ggmartinez.duckdns.org
-    - proxmoxUser: root@pam
-    - proxmoxPassword: maiden
-    - proxmoxNode: vm2
-    - proxmoxCentosTemplate: Centos7
-  tasks:
+
     - name: Create Rancher VM
       community.general.proxmox_kvm:
         api_user: "{{ proxmoxUser }}"
@@ -18,6 +9,11 @@
         node: vm2
         proxmox_default_behavior: "no_defaults"
         full: no
+    - name: Update Rancher VM Settings
+      community.general.proxmox_kvm:
+        api_user: "{{ proxmoxUser }}"
+        api_password: "{{ proxmoxPassword }}"
+        api_host: "{{ proxmoxIP }}"
         cores: 2
         memory: 2048
         nameservers: "192.168.1.254"
@@ -28,4 +24,3 @@
           virtio0: 'local-lvm:10'
           virtio1: 'local-lvm:10'
         update: true
-      
