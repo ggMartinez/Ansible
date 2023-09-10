@@ -2,7 +2,6 @@
     set_fact:
       vmName: K8s---Rancher
       diskStorage: local-lvm
-      diskFormat: qcow2
 
   - name: Create Rancher VM
     community.general.proxmox_kvm:
@@ -42,7 +41,7 @@
       api_host: "{{ proxmoxIP }}"
       name: "{{ vmName }}"
       disk: scsi1
-      format: {{ diskFormat }}
+      format: qcow2
       storage: {{ diskStorage }}
       size: 10
       state: present
@@ -54,7 +53,7 @@
       api_host: "{{ proxmoxIP }}"
       name: "{{ vmName }}"
       disk: scsi1
-      format: {{ diskFormat }}
+      format: qcow2
       storage: {{ diskStorage }}
       size: 10
       state: present
