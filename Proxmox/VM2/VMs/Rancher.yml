@@ -42,7 +42,7 @@
       name: "{{ vmName }}"
       disk: scsi1
       format: qcow2
-      storage: {{ diskStorage }}
+      storage: "{{ diskStorage }}"
       size: 10
       state: present
 
@@ -54,6 +54,6 @@
       name: "{{ vmName }}"
       disk: scsi1
       format: qcow2
-      storage: {{ diskStorage }}
+      storage: "{{ diskStorage }}"
       size: 10
       state: present
