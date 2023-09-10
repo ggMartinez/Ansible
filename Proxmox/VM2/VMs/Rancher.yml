@@ -1,6 +1,8 @@
   - name: Set Variables
     set_fact:
       vmName: K8s---Rancher
+      diskStorage: local-lvm
+      diskFormat: qcow2
 
   - name: Create Rancher VM
     community.general.proxmox_kvm:
@@ -40,10 +42,9 @@
       api_host: "{{ proxmoxIP }}"
       name: "{{ vmName }}"
       disk: scsi1
-      format: qcow2
-      storage: local
+      format: {{ diskFormat }}
+      storage: {{ diskStorage }}
       size: 10
-      create: forced
       state: present
 
   - name: Add disk for /var/lib/kubelet/pods to Rancher VM
@@ -53,8 +54,7 @@
       api_host: "{{ proxmoxIP }}"
       name: "{{ vmName }}"
       disk: scsi1
-      format: qcow2
-      storage: local
+      format: {{ diskFormat }}
+      storage: {{ diskStorage }}
       size: 10
-      create: forced
       state: present
