@@ -32,6 +32,6 @@
       ipconfig:
         ipconfig0: 'ip=192.168.1.50/24,gw=192.168.1.1'
       virtio:
-        virtio0: 'local-lvm:10'
         virtio1: 'local-lvm:10'
+        virtio2: 'local-lvm:10'
       update: true
