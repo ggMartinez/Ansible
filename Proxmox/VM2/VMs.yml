@@ -16,5 +16,6 @@
         clone: "{{ proxmoxCentosTemplate }}"
         name: K8s---Rancher
         node: vm2
+        proxmox_default_behavior: "no_defaults"
         full: no
       
