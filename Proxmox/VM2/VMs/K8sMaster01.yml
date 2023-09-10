@@ -58,6 +58,3 @@
       size: 10
       state: present
 
-  - name: Done 
-    debug:
-      msg: "VM {{ vmName }} created successfully"
