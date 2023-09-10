@@ -24,7 +24,7 @@
     community.general.proxmox_kvm:
       api_user: "{{ proxmoxUser }}"
       api_password: "{{ proxmoxPassword }}"
-      api_host: "{{ proxmoxIP }}"
+      api_host: "{{ proxmoxUrl }}"
       name: "{{ vmName }}"
       node: "{{ proxmoxNode }}"
       cores: 2
@@ -40,7 +40,7 @@
     community.general.proxmox_disk:
       api_user: "{{ proxmoxUser }}"
       api_password: "{{ proxmoxPassword }}"
-      api_host: "{{ proxmoxIP }}"
+      api_host: "{{ proxmoxUrl }}"
       name: "{{ vmName }}"
       disk: scsi1
       storage: "{{ diskStorage }}"
@@ -51,7 +51,7 @@
     community.general.proxmox_disk:
       api_user: "{{ proxmoxUser }}"
       api_password: "{{ proxmoxPassword }}"
-      api_host: "{{ proxmoxIP }}"
+      api_host: "{{ proxmoxUrl }}"
       name: "{{ vmName }}"
       disk: scsi2
       storage: "{{ diskStorage }}"
