@@ -7,13 +7,13 @@
     - proxmoxCentosTemplate: centos7
   tasks:
     - name: Create Rancher VM
-    community.general.proxmox_kvm:
-      api_user: {{ proxmoxUser }}
-      api_password: {{ proxmoxPassword }}
-      api_host: {{ proxmoxIP }}
-      clone: {{ proxmoxCentosTemplate }}
-      name: K8s---Rancher
-      node: vm2
-      full: no
-      storage: local-lvm
+      community.general.proxmox_kvm:
+        api_user: {{ proxmoxUser }}
+        api_password: {{ proxmoxPassword }}
+        api_host: {{ proxmoxIP }}
+        clone: {{ proxmoxCentosTemplate }}
+        name: K8s---Rancher
+        node: vm2
+        full: no
+        storage: local-lvm
       
