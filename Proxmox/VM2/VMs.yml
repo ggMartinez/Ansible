@@ -17,5 +17,4 @@
         name: K8s---Rancher
         node: vm2
         full: no
-        storage: local-lvm
       
