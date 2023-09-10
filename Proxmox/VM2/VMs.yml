@@ -1,14 +1,15 @@
 - hosts: 127.0.0.1
   connection: local
   gather_facts: no
-  vars:
-    - proxmoxIP: vm2.ggmartinez.duckdns.org
-    - proxmoxUser: root@pam
-    - proxmoxPassword: maiden
-    - proxmoxNode: vm2
-    - proxmoxCentosTemplate: Centos7
+
   tasks:
     - include_tasks: "{{ item }}"
       with_fileglob:
         - VMs/*.yml
+      vars:
+        - proxmoxIP: vm2.ggmartinez.duckdns.org
+        - proxmoxUser: root@pam
+        - proxmoxPassword: maiden
+        - proxmoxNode: vm2
+        - proxmoxCentosTemplate: Centos7
       
