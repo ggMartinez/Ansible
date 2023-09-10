@@ -1,10 +1,10 @@
 - hosts: all
   vars:
-    - proxmoxIP: "vm2.ggmartinez.duckdns.org"
-    - proxmoxUser: "root@pam"
-    - proxmoxPassword: "password"
-    - proxmoxNode: "vm2"
-    - proxmoxCentosTemplate: "centos7"
+    - proxmoxIP: vm2.ggmartinez.duckdns.org
+    - proxmoxUser: root@pam
+    - proxmoxPassword: password
+    - proxmoxNode: vm2
+    - proxmoxCentosTemplate: centos7
   tasks:
   - name: Create Rancher VM
     community.general.proxmox_kvm:
