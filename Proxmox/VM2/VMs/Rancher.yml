@@ -41,7 +41,6 @@
       api_host: "{{ proxmoxIP }}"
       name: "{{ vmName }}"
       disk: scsi1
-      format: qcow2
       storage: "{{ diskStorage }}"
       size: 10
       state: present
@@ -52,8 +51,7 @@
       api_password: "{{ proxmoxPassword }}"
       api_host: "{{ proxmoxIP }}"
       name: "{{ vmName }}"
-      disk: scsi1
-      format: qcow2
+      disk: scsi2
       storage: "{{ diskStorage }}"
       size: 10
       state: present
