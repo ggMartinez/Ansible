@@ -1,0 +1,52 @@
+---
+- hosts: K3s
+  tasks:
+    - name: Install Python packages required
+      pip:
+        name:
+          - pyyaml
+          - kubernetes
+          - urllib3==1.26.15
+        extra_args: --user
+
+    - name: Check if K3s is installed
+      shell: systemctl is-active k3s || true
+      register: K3sActive
+
+    - name: Download K3s install script
+      get_url:
+        url: https://get.k3s.io
+        dest: /root/install-k3s.sh
+        mode: '0755'
+      when: K3sActive.stdout != "active"
+
+    - name: Install K3s
+      shell: sh /root/install-k3s.sh
+      environment:
+        INSTALL_K3S_VERSION: v1.24.10+k3s1
+      when: K3sActive.stdout != "active"
+
+
+    - name: Wait for kubernetes to initialize
+      shell: sleep 120
+      when: K3sActive.stdout != "active"
+
+    - name: Check if K3s is installed
+      stat:
+        path: /bin/helm
+      register: HelmInstalled
+
+    - name: Download Helm
+      unarchive:
+        src: https://get.helm.sh/helm-v3.12.0-linux-amd64.tar.gz
+        dest: /tmp/
+        remote_src: yes
+      when: not HelmInstalled.stat.exists
+
+    - name: Install Helm on /bin
+      copy:
+        src: /tmp/linux-amd64/helm
+        dest: /bin/helm
+        remote_src: yes
+        mode: +x
+      when: not HelmInstalled.stat.exists
