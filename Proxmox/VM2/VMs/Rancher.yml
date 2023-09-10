@@ -1,4 +1,4 @@
-  - name: Set Apache URL
+  - name: Set Variables
     set_fact:
       vmName: K8s---Rancher
 
@@ -12,7 +12,11 @@
       node: "{{ proxmoxNode }}"
       proxmox_default_behavior: "no_defaults"
       full: no
+    register: vmCreated
 
+    - name: Wait VM to be created
+      shell: sleep 10
+      when : vmCreated.changed
 
   - name: Update Rancher VM Settings
     community.general.proxmox_kvm:
