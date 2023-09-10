@@ -18,7 +18,7 @@
     when : vmCreated.changed
 
   - name: Update Rancher VM Settings
-    community.general.proxmox_kvm:
+    proxmox_kvm:
       api_user: "{{ proxmoxUser }}"
       api_password: "{{ proxmoxPassword }}"
       api_host: "{{ proxmoxIP }}"
@@ -33,7 +33,7 @@
       update: true
   
   - name: Add disk for /var/lib/rancher to Rancher VM
-    community.general.proxmox_disk:
+    proxmox_disk:
       api_user: "{{ proxmoxUser }}"
       api_password: "{{ proxmoxPassword }}"
       api_host: "{{ proxmoxIP }}"
@@ -46,7 +46,7 @@
       state: present
 
   - name: Add disk for /var/lib/kubelet/pods to Rancher VM
-    community.general.proxmox_disk:
+    proxmox_disk:
       api_user: "{{ proxmoxUser }}"
       api_password: "{{ proxmoxPassword }}"
       api_host: "{{ proxmoxIP }}"
