@@ -7,9 +7,9 @@
       with_fileglob:
         - VMs/*.yml
       vars:
-        - proxmoxIP: vm2.ggmartinez.duckdns.org
-        - proxmoxUser: root@pam
-        - proxmoxPassword: maiden
-        - proxmoxNode: vm2
-        - proxmoxCentosTemplate: Centos7
+        proxmoxIP: vm2.ggmartinez.duckdns.org
+        proxmoxUser: root@pam
+        proxmoxPassword: maiden
+        proxmoxNode: vm2
+        proxmoxCentosTemplate: Centos7
       
