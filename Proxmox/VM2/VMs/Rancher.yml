@@ -1,6 +1,6 @@
   - name: Set Apache URL
     set_fact:
-      vmName: 'K8s---Rancher'
+      vmName: K8s---Rancher
 
   - name: Create Rancher VM
     community.general.proxmox_kvm:
@@ -8,7 +8,7 @@
       api_password: "{{ proxmoxPassword }}"
       api_host: "{{ proxmoxIP }}"
       clone: "{{ proxmoxCentosTemplate }}"
-      name: {{ vmName }}
+      name: "{{ vmName }}"
       node: {{ proxmoNode }}
       proxmox_default_behavior: "no_defaults"
       full: no
@@ -19,7 +19,7 @@
       api_user: "{{ proxmoxUser }}"
       api_password: "{{ proxmoxPassword }}"
       api_host: "{{ proxmoxIP }}"
-      name: {{ vmName }}
+      name: "{{ vmName }}"
       cores: 2
       memory: 2048
       nameservers: "192.168.1.254"
