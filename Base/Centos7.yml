@@ -1,6 +1,11 @@
 ---
 - hosts: Centos7
   tasks:
+    - name: Set Hostname
+      hostname:
+        name: "{{ inventory_hostname }}"
+        state: present
+        
     - name: Install Epel Repo 
       yum:
         name: 
