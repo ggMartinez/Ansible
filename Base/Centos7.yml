@@ -14,4 +14,32 @@
           - mlocate
           - wget
           - vim
+          - net-tools
+          - htop
+          - ntp
+          - ntpdate
+          - libselinux-python 
+          - golang-github-prometheus-node-exporter
         state: present
+
+    - name: Set timezone
+      timezone:
+        name: America/Montevideo
+
+    - name: Start ntpd service
+      systemd:
+        state: started
+        enabled: yes
+        name: ntpd
+
+    - name: Turn off SELinux
+      selinux:
+        state: disabled
+
+    - name: Disable SELinux
+      selinux:
+        policy: targeted
+        state: permissive
+
+  become: yes
+  become_user: root
