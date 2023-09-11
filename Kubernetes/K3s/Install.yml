@@ -50,3 +50,6 @@
         remote_src: yes
         mode: +x
       when: not HelmInstalled.stat.exists
+      
+  become: yes
+  become_user: root
