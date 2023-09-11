@@ -53,7 +53,7 @@
       when: not HelmInstalled.stat.exists
 
     - name: Dowmload Kubecolor
-     ansible.builtin.unarchive:
+      ansible.builtin.unarchive:
         src: https://example.com/example.zip
         dest: /usr/bin
         remote_src: yes
