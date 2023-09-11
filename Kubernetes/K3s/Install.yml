@@ -1,10 +1,6 @@
 ---
 - hosts: K3s
   tasks:
-    - name: Install or update pip
-      community.general.easy_install:
-        name: pip
-        state: latest
     - name: Install Python packages required
       pip:
         name:
