@@ -1,5 +1,5 @@
 ---
-  - name: Turn off SELinux | {{ inventory_hostname }}
+  - name: Turn off SELinux 
     selinux:
       state: disabled
 

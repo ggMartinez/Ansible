@@ -1,5 +1,5 @@
 ---
-  - name: Install Prometheus Exporter | {{ inventory_hostname }}
+  - name: Install Prometheus Exporter 
     yum:
       name: 
         - golang-github-prometheus-node-exporter

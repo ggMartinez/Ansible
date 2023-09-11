@@ -1,5 +1,5 @@
 ---
-  - name: Set Hostname | {{ inventory_hostname }}
+  - name: Set Hostname 
     hostname:
       name: "{{ inventory_hostname }}"
       use: systemd

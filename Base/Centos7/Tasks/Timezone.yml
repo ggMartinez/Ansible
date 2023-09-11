@@ -1,5 +1,5 @@
 ---
-  - name: Set timezone | {{ inventory_hostname }}
+  - name: Set timezone 
     timezone:
       name: America/Montevideo
 
