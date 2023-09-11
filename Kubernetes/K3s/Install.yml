@@ -12,6 +12,7 @@
     - name: Check if K3s is installed
       shell: systemctl is-active k3s || true
       register: K3sActive
+      changed_when: false
 
     - name: Download K3s install script
       get_url:
@@ -50,6 +51,24 @@
         remote_src: yes
         mode: +x
       when: not HelmInstalled.stat.exists
+
+    - name: Dowmload Kubecolor
+     ansible.builtin.unarchive:
+        src: https://example.com/example.zip
+        dest: /usr/bin
+        remote_src: yes
+
+    - name: Check if kubecolor alias exits in bashrc
+      shell: grep -q "alias kubectl=kubecolor" /root/.bashrc
+      register: kubecolorAlias
+      changed_when: false
+
+    - name: Insert Kubecolor Alias in bashrc
+      lineinfile:
+        path: "/root/.bashrc"
+        line: alias kubectl=kubecolor
+        insertbefore: EOF
+      when: not kubecolorAlias.stdout
       
   become: yes
   become_user: root
