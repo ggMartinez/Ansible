@@ -61,3 +61,13 @@
   - name: Done 
     debug:
       msg: "VM {{ vmName }} created successfully"
+
+  - name: Start the VM | {{ vmName }}
+    community.general.proxmox_vm:
+      api_user: "{{ proxmoxUser }}"
+      api_password: "{{ proxmoxPassword }}"
+      api_host: "{{ proxmoxUrl }}"
+      node: "{{ proxmoxNode }}"
+      name: "{{ vmName }}"
+      state: started 
+      update: true

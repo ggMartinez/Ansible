@@ -8,9 +8,9 @@
       api_user: "{{ proxmoxUser }}"
       api_password: "{{ proxmoxPassword }}"
       api_host: "{{ proxmoxUrl }}"
-      clone: "{{ proxmoxCentosTemplate }}"
       node: "{{ proxmoxNode }}"
       name: "{{ vmName }}"
+      clone: "{{ proxmoxCentosTemplate }}"
       proxmox_default_behavior: "no_defaults"
       full: no
       onboot: yes
@@ -25,8 +25,8 @@
       api_user: "{{ proxmoxUser }}"
       api_password: "{{ proxmoxPassword }}"
       api_host: "{{ proxmoxUrl }}"
-      name: "{{ vmName }}"
       node: "{{ proxmoxNode }}"
+      name: "{{ vmName }}"
       cores: 2
       memory: 2048
       nameservers: "192.168.1.254"
@@ -57,4 +57,15 @@
       storage: "{{ diskStorage }}"
       size: 10
       state: present
+  
+  - name: Start the VM | {{ vmName }}
+    community.general.proxmox_vm:
+      api_user: "{{ proxmoxUser }}"
+      api_password: "{{ proxmoxPassword }}"
+      api_host: "{{ proxmoxUrl }}"
+      node: "{{ proxmoxNode }}"
+      name: "{{ vmName }}"
+      state: started 
+      update: true
+
 

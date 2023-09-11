@@ -1,0 +1,26 @@
+---
+  - name: Set Hostname | {{ inventory_hostname }}
+    hostname:
+      name: "{{ inventory_hostname }}"
+      use: systemd
+  - name: Install Epel Repo 
+    yum:
+      name: 
+        - epel-release
+      state: present
+  - name: Install Packages
+    yum:
+      name: 
+        - iptables-services
+        - git
+        - mlocate
+        - wget
+        - vim
+        - net-tools
+        - htop
+        - ntp
+        - ntpdate
+        - libselinux-python 
+        - python3
+      state: present
+

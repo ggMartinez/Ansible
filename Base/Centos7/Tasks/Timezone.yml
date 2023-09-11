@@ -1,0 +1,11 @@
+---
+  - name: Set timezone | {{ inventory_hostname }}
+    timezone:
+      name: America/Montevideo
+
+  - name: Start ntpd service
+    systemd:
+      state: started
+      enabled: yes
+      name: ntpd
+

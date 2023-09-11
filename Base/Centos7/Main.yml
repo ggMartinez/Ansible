@@ -1,0 +1,12 @@
+---
+- hosts: Centos7
+  tasks:
+
+    - include_tasks: "Tasks/Hostname.yml"
+    - include_tasks: "Tasks/Packages.yml"
+    - include_tasks: "Tasks/Timezone.yml"
+    - include_tasks: "Tasks/SELinux.yml"
+    - include_tasks: "Tasks/Prometheus.yml"
+
+  become: yes
+  become_user: root
