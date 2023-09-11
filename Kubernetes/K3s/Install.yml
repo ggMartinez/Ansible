@@ -59,7 +59,7 @@
         remote_src: yes
 
     - name: Check if kubecolor alias exits in bashrc
-      shell: grep  'alias kubectl=kubecolor' /root/.bashrc
+      shell: grep  'alias kubectl=kubecolor' /root/.bashrc || echo 0
       register: kubecolorAlias
       changed_when: false
 
@@ -68,7 +68,7 @@
         path: "/root/.bashrc"
         line: alias kubectl=kubecolor
         insertbefore: EOF
-      when: not kubecolorAlias.stdout
+      when: kubecolorAlias.stdout == "0"
       
   become: yes
   become_user: root
