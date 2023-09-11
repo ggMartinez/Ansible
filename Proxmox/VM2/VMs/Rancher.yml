@@ -58,9 +58,6 @@
       size: 10
       state: present
 
-  - name: Done 
-    debug:
-      msg: "VM {{ vmName }} created successfully"
 
   - name: Start the VM | {{ vmName }}
     community.general.proxmox_kvm:
