@@ -59,7 +59,7 @@
       state: present
   
   - name: Start the VM | {{ vmName }}
-    community.general.proxmox_vm:
+    community.general.proxmox_kvm:
       api_user: "{{ proxmoxUser }}"
       api_password: "{{ proxmoxPassword }}"
       api_host: "{{ proxmoxUrl }}"
