@@ -52,6 +52,18 @@
         mode: +x
       when: not HelmInstalled.stat.exists
 
+    - name: Creates directory for K8s Config
+      file:
+        path: /root/.kube
+        state: directory
+
+    - name: Create a symbolic link for K8s  config
+      ansible.builtin.file:
+        src: /etc/rancher/k3s/k3s.yaml
+        dest: /root/.kube/config
+        state: link
+
+        
     - name: Dowmload Kubecolor
       ansible.builtin.unarchive:
         src: https://github.com/hidetatz/kubecolor/releases/download/v0.0.25/kubecolor_0.0.25_Linux_x86_64.tar.gz
