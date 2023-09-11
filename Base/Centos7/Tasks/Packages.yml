@@ -1,8 +1,4 @@
 ---
-  - name: Set Hostname 
-    hostname:
-      name: "{{ inventory_hostname }}"
-      use: systemd
   - name: Install Epel Repo 
     yum:
       name: 
