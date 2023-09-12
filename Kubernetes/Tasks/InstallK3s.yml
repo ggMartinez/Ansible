@@ -136,3 +136,8 @@
     changed_when: false
 
   - name: Insert Kubecolor Alias in bashrc
+    lineinfile:
+      path: "/root/.bashrc"
+      line: alias kubectl=kubecolor
+      insertbefore: EOF
+    when: kubecolorAlias.stdout == "0"
