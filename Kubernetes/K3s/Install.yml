@@ -9,6 +9,60 @@
           - urllib3==1.26.15
         extra_args: --user
 
+    - name: Partition disks
+      community.general.parted:
+        device: {{ item }}
+        number: 1
+        flags: [ lvm ]
+        state: present
+      with_items:
+        - /dev/sdb
+        - /dev/sdc
+
+    - name: Create VG for pods
+      community.general.lvg:
+          vg: pods
+          pvs: /dev/sdb1
+    - name: Create VG for K3s Data
+      community.general.lvg:
+          vg: k3s
+          pvs: /dev/sdc1
+
+    - name: Logical volume for Pods
+      community.general.lvol:
+          vg: pods
+          lv: data
+          size: 100%FREE
+
+    - name: Logical volume for K3s Data
+      community.general.lvol:
+          vg: k3s
+          lv: data
+          size: 100%FREE
+
+    - name: Format the volume with ext4 fs
+      community.general.filesystem:
+          fstype: ext4
+          dev: {{ item }}
+      with_items:
+          - /dev/pods/data
+          - /dev/k3s/data
+      
+    - name: Mount pods volume
+      ansible.posix.mount:
+        path: /var/lib/kubelet/pods
+        src: /dev/pods/data
+        fstype: ext4
+        state: mounted
+
+    - name: Mount k3s  volume
+      ansible.posix.mount:
+        path: /var/lib/rancher
+        src: /dev/k3s/data
+        fstype: ext4
+        state: mounted
+
+
     - name: Check if K3s is installed
       shell: systemctl is-active k3s || true
       register: K3sActive
