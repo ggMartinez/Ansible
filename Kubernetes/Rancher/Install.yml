@@ -2,7 +2,7 @@
 - hosts: Rancher
   tasks:
 
-    - include_tasks: ../Tasks/InstallK3S.yml
+    - include_tasks: ../Tasks/InstallK3s.yml
       vars:
         k3s_version: v1.24.10+k3s1
       tags: Install_K3S
