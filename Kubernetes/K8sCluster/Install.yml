@@ -2,7 +2,7 @@
 - hosts: K8s
   tasks:
 
-  - include_tasks: ../Tasks/InstallK3s.yml
+  - include_tasks: ../Tasks/K3s/Install.yml
     tags: InstallK3s
 
   become: yes
