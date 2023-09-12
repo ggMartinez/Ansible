@@ -1,0 +1,9 @@
+---
+- hosts: K8s
+  tasks:
+
+  - include_tasks: ../Tasks/InstallK3s.yml
+    tags: InstallK3s
+
+  become: yes
+  become_user: root

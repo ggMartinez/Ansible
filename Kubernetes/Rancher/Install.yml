@@ -2,6 +2,11 @@
 - hosts: Rancher
   tasks:
 
+    - include_tasks: ../Tasks/Install_K3S.yml
+      vars:
+        k3s_version: v1.24.10+k3s1
+      tags: Install_K3S
+
     - name: Add Rancher Helm repository
       kubernetes.core.helm_repository:
         name: rancher-latest
