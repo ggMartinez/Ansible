@@ -4,7 +4,8 @@
 
     - name: Set K3s Version
       set_fact:
-        k3sVersion: {{ 'v1.24.10+k3s1' if hostvars[inventory_hostname].rancherHost == "yes" else '' }}
+        k3sVersion: "{{ 'v1.24.10+k3s1' if hostvars[inventory_hostname].rancherHost == "yes" else '' }}"
+
     - name: Install Python packages required
       pip:
         name:
