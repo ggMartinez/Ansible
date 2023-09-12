@@ -4,7 +4,7 @@
 
     - include_tasks: ../Tasks/InstallK3s.yml
       vars:
-        k3s_version: v1.24.10+k3s1
+        k3sVersion: v1.24.10+k3s1
       tags: Install_K3S
 
     - name: Add Rancher Helm repository
