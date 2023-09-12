@@ -86,15 +86,11 @@
         mode: '0755'
       when: K3sActive.stdout != "active"
 
-    - name: Install K3s for Rancher
+    - name: Install K3s 
       shell: sh /root/install-k3s.sh
       environment:
-        INSTALL_K3S_VERSION: v1.24.10+k3s1
-      when: K3sActive.stdout != "active" && and inventory_hostname == 'rancher.ranch.ggmartinez.duckdns.org'
-
-    - name: Install K3s
-      shell: sh /root/install-k3s.sh
-      when: K3sActive.stdout != "active" && and inventory_hostname != 'rancher.ranch.ggmartinez.duckdns.org'
+        INSTALL_K3S_VERSION: {{ 'v1.24.10+k3s1' if hostvars[inventory_hostname].rancherHost == "yes" else '' }}
+      when: K3sActive.stdout != "active" 
 
     - name: Wait for kubernetes to initialize
       shell: sleep 120
