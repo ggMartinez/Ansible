@@ -5,9 +5,6 @@
         - kubernetes
         - urllib3==1.26.15
       extra_args: --user
-  - name: DEBUG
-    debug:
-      msg: "{{ k3sVersion }}"
 
   - name: Partition disks /dev/sdb
     community.general.parted:
