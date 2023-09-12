@@ -87,7 +87,7 @@
   - name: Install K3s 
     shell: sh /root/install-k3s.sh
     environment:
-      INSTALL_K3S_VERSION: "{{ k3sVersion | default(omit) }}"
+      INSTALL_K3S_VERSION: "{{ k3sVersion | default('') }}"
     when: K3sActive.stdout != "active" 
 
   - name: Wait for kubernetes to initialize
