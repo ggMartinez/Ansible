@@ -6,12 +6,10 @@
     tags: InstallK3s
 
   - name: Create Admin Account:
-    shell: |
-      kubectl apply -f Manifests/AdminAccount.yml
+    shell: kubectl apply -f Manifests/AdminAccount.yml
 
   - name: Create LetsEncrpyt Cert Manager:
-    shell: |
-      kubectl apply -f Manifests/LetsEncryptCertManager.yml
+    shell: kubectl apply -f Manifests/LetsEncryptCertManager.yml
   
   - name: Wait for Cert Manager to start up
     shell: sleep 120
