@@ -5,10 +5,10 @@
   - include_tasks: ../Common/K3s/Install.yml
     tags: InstallK3s
 
-  - name: Create Admin Account:
+  - name: Create Admin Account
     shell: kubectl apply -f Manifests/AdminAccount.yml
 
-  - name: Create LetsEncrpyt Cert Manager:
+  - name: Create LetsEncrpyt Cert Manager
     shell: kubectl apply -f Manifests/LetsEncryptCertManager.yml
   
   - name: Wait for Cert Manager to start up
