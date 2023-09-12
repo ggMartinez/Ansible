@@ -27,23 +27,27 @@
       community.general.lvg:
           vg: pods
           pvs: /dev/sdb1
+      register: vgPods
 
     - name: Create VG for K3s Data
       community.general.lvg:
           vg: k3s
           pvs: /dev/sdc1
+      register: vgK3s
 
     - name: Logical volume for Pods
       community.general.lvol:
           vg: pods
           lv: data
           size: 100%FREE
+      when: vgPods.changed
 
     - name: Logical volume for K3s Data
       community.general.lvol:
           vg: k3s
           lv: data
           size: 100%FREE
+      when: vgK3s.changed
 
     - name: Format the volume for pods with ext4 fs
       community.general.filesystem:
