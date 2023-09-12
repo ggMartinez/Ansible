@@ -1,0 +1,7 @@
+  - name: Install Python packages required
+    pip:
+      name:
+        - pyyaml
+        - kubernetes
+        - urllib3==1.26.15
+      extra_args: --user
