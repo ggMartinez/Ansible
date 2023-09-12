@@ -2,8 +2,23 @@
 - hosts: K8s
   tasks:
 
-  - include_tasks: ../Tasks/K3s/Install.yml
+  - include_tasks: ../Common/K3s/Install.yml
     tags: InstallK3s
+
+  - name: Create Admin Account:
+    shell: |
+      kubectl apply -f Manifests/AdminAccount.yml
+
+  - name: Create LetsEncrpyt Cert Manager:
+    shell: |
+      kubectl apply -f Manifests/LetsEncryptCertManager.yml
+  
+  - name: Wait for Cert Manager to start up
+    shell: sleep 120
+    changed_when: False
+
+  - name: Create LetsEncrpyt Issuer
+    shell: kubectl apply -f Manifests/LetsEncryptIssuer.yml
 
   become: yes
   become_user: root

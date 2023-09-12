@@ -2,7 +2,7 @@
 - hosts: Rancher
   tasks:
 
-    - include_tasks: ../Tasks/InstallK3s.yml
+    - include_tasks: ../Common/K3s/Install.yml
       vars:
         k3sVersion: v1.24.10+k3s1
       tags: Install_K3S
@@ -43,9 +43,6 @@
         kind: Namespace
         state: present
         kubeconfig: /etc/rancher/k3s/k3s.yaml
-
-
-
 
     - name : Install Rancher via Helm
       kubernetes.core.helm:
