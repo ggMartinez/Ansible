@@ -5,6 +5,9 @@
         - kubernetes
         - urllib3==1.26.15
       extra_args: --user
+  - name: DEBUG
+    debug:
+      msg: "{{ k3sVersion }}"
 
   - name: Partition disks /dev/sdb
     community.general.parted:
@@ -82,6 +85,7 @@
       dest: /root/install-k3s.sh
       mode: '0755'
     when: K3sActive.stdout != "active"
+
 
   - name: Install K3s 
     shell: sh /root/install-k3s.sh
