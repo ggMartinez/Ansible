@@ -16,8 +16,8 @@
         flags: [ lvm ]
         state: present
       with_items:
-        - /dev/sdb
-        - /dev/sdc
+        - "/dev/sdb"
+        - "/dev/sdc"
 
     - name: Create VG for pods
       community.general.lvg:
@@ -45,8 +45,8 @@
           fstype: ext4
           dev: {{ item }}
       with_items:
-          - /dev/pods/data
-          - /dev/k3s/data
+          - "/dev/pods/data"
+          - "/dev/k3s/data"
       
     - name: Mount pods volume
       ansible.posix.mount:
