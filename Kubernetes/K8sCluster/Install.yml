@@ -6,17 +6,17 @@
     tags: InstallK3s
 
   - name: Create Admin Account
-    shell: /usr/local/bin/kubectl apply -f Manifests/AdminAccount.yml
+    shell: "/usr/local/bin/kubectl apply -f {{ playbook_dir }}/Manifests/AdminAccount.yml"
 
   - name: Create LetsEncrpyt Cert Manager
-    shell: /usr/local/bin/kubectl apply -f Manifests/LetsEncryptCertManager.yml
+    shell: "/usr/local/bin/kubectl apply -f {{ playbook_dir }}/Manifests/LetsEncryptCertManager.yml"
   
   - name: Wait for Cert Manager to start up
     shell: sleep 120
     changed_when: False
 
   - name: Create LetsEncrpyt Issuer
-    shell: /usr/local/bin/kubectl apply -f Manifests/LetsEncryptIssuer.yml
+    shell: "/usr/local/bin/kubectl apply -f {{ playbook_dir }}/Manifests/LetsEncryptIssuer.yml"
 
   become: yes
   become_user: root
