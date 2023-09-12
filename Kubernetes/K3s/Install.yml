@@ -1,6 +1,10 @@
 ---
 - hosts: K3s
   tasks:
+
+    - name: Set K3s Version
+      set_fact:
+        k3sVersion: {{ 'v1.24.10+k3s1' if hostvars[inventory_hostname].rancherHost == "yes" else '' }}
     - name: Install Python packages required
       pip:
         name:
@@ -89,7 +93,7 @@
     - name: Install K3s 
       shell: sh /root/install-k3s.sh
       environment:
-        INSTALL_K3S_VERSION: {{ 'v1.24.10+k3s1' if hostvars[inventory_hostname].rancherHost == "yes" else '' }}
+        INSTALL_K3S_VERSION: {{ k3sVersion }}
       when: K3sActive.stdout != "active" 
 
     - name: Wait for kubernetes to initialize
