@@ -49,7 +49,7 @@
         release_namespace: cattle-system
         values:
           replicas: 3
-          hostname: rancher.ggmartinez.duckdns.org
+          hostname: ranch.ggmartinez.duckdns.org
           ingress:
             tls:
               source: rancher
