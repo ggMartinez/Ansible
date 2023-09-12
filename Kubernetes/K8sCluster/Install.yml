@@ -8,7 +8,7 @@
   - name: Copy Manifests to Server
     copy: 
       src: Manifests
-      dest: /tmp/Manifests
+      dest: /tmp
 
   - name: Create Admin Account
     shell: "/usr/local/bin/kubectl apply -f /tmp/Manifests/AdminAccount.yml"
