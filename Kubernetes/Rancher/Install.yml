@@ -54,6 +54,7 @@
         release_namespace: cattle-system
         values:
           replicas: 3
+          bootstrapPassword: "{{ rancherPassword }}"
           hostname: rancher.ggmartinez.duckdns.org
           ingress:
             tls:
