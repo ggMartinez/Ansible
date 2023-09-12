@@ -22,7 +22,7 @@
     changed_when: "'unchanged' not in leCertManager.stdout"
 
   - name: Wait for Cert Manager to start up
-    shell: sleep 120
+    shell: sleep 60
     changed_when: False
 
   - name: Create LetsEncrpyt Issuer
