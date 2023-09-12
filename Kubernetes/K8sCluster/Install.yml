@@ -9,19 +9,32 @@
     copy: 
       src: Manifests
       dest: /tmp
+    changed_when: False
 
   - name: Create Admin Account
     shell: "/usr/local/bin/kubectl apply -f /tmp/Manifests/AdminAccount.yml"
+    register: adminAccount
+    changed_when: "'unchanged' not in adminAccount.stdout"
 
   - name: Create LetsEncrpyt Cert Manager
     shell: "/usr/local/bin/kubectl apply -f /tmp/Manifests/LetsEncryptCertManager.yml"
-  
+    register: leCertManager
+    changed_when: "'unchanged' not in leCertManager.stdout"
+
   - name: Wait for Cert Manager to start up
     shell: sleep 120
     changed_when: False
 
   - name: Create LetsEncrpyt Issuer
     shell: "/usr/local/bin/kubectl apply -f /tmp/Manifests/LetsEncryptIssuer.yml"
+    register: leIssuer
+    changed_when: "'unchanged' not in leIssuer.stdout"
+
+  - name: Delete Manifests from server
+    file:
+      path: /tmp/Manifests
+      state: absent
+    changed_when: False
 
   become: yes
   become_user: root
