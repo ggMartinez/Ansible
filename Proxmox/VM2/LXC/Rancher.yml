@@ -1,0 +1,19 @@
+  - name: Set Variables
+    set_fact:
+      lxcName: vscode.ggmartinez.duckdns.org
+      diskStorage: local-lvm
+
+  - name: Create LXC | {{ vmName }}
+    community.general.proxmox:
+      api_user: "{{ proxmoxUser }}"
+      api_password: "{{ proxmoxPassword }}"
+      api_host: "{{ proxmoxUrl }}"
+      node: "{{ proxmoxNode }}"
+      hostname: "{{ lxcName }}"
+      ostemplate: 'local:vztmpl/rockylinux9-default_202211091_amd64.tar.xz'
+      netif: '{"net0":"name=eth0,gw=192.168.1.1,ip=192.168.1.60/24,bridge=vmbr0"}'
+      pubkey: "{{ sshKey }}"
+      nameserver: "192.168.1.254"
+
+
+      
