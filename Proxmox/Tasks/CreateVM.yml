@@ -1,0 +1,57 @@
+  - name: Create VM | {{ VMName }}
+    community.general.proxmox_kvm:
+      api_user: "{{ proxmoxUser }}"
+      api_password: "{{ proxmoxPassword }}"
+      api_host: "{{ proxmoxUrl }}"
+      node: "{{ proxmoxNode }}"
+      name: "{{ VMName }}"
+      clone: "{{ Template | default('Centos7') }}"
+      proxmox_default_behavior: "no_defaults"
+      full: no
+      onboot: yes
+    register: vmCreated
+
+  - name: Wait for the VM to be created | {{ VMName }}
+    shell: sleep 10
+    when : vmCreated.changed
+
+  - name: Update VM Settings | {{ VMName }}
+    community.general.proxmox_kvm:
+      api_user: "{{ proxmoxUser }}"
+      api_password: "{{ proxmoxPassword }}"
+      api_host: "{{ proxmoxUrl }}"
+      node: "{{ proxmoxNode }}"
+      name: "{{ VMName }}"
+      cores: {{ CpuCount | default('1') }}
+      memory: {{ MemorySize | default('1024') }}
+      nameservers: "{{ NameServer | default('8.8.8.8') }}"
+      searchdomains: "{{ SearchDomains | default('ggmartinez.duckdns.org') }}"
+      ipconfig:
+        ipconfig0: 'ip={{ CIDR }},gw={{ Gateway }}'
+      update: true
+    when : vmCreated.changed
+  
+  - name: Add disk for {{ item.Name }} to VM | {{ VMName }}
+    community.general.proxmox_disk:
+      api_user: "{{ proxmoxUser }}"
+      api_password: "{{ proxmoxPassword }}"
+      api_host: "{{ proxmoxUrl }}"
+      name: "{{ VMName }}"
+      disk: {{ item.Disk }}
+      storage: "{{ DiskStorage | default('local-lvm') }}"
+      size: {{ item.Size }}
+      state: present
+    with_items:
+      - "{{ AdditionalDisks }}}}"
+  
+  - name: Start the VM | {{ VMName }}
+    community.general.proxmox_kvm:
+      api_user: "{{ proxmoxUser }}"
+      api_password: "{{ proxmoxPassword }}"
+      api_host: "{{ proxmoxUrl }}"
+      node: "{{ proxmoxNode }}"
+      name: "{{ VMName }}"
+      state: "{{ State | default('started') }}" 
+      update: true
+
+
