@@ -1,5 +1,5 @@
 - name: Create Container VSCode Web
-  include_tasks: ../Tasks/CreateContainer.yml
+  import_tasks: ../Tasks/CreateContainer.yml
   vars:
     - ContainerName: "vscode.ggmartinez.duckdns.org"
     - CpuCoresCount: 1

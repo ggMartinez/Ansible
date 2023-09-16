@@ -1,5 +1,5 @@
 - name: Create VM Rancher
-  include_tasks: ../Tasks/CreateVM.yml
+  import_tasks: ../Tasks/CreateVM.yml
   vars:
     - VMName: "K8s---Rancher"
     - Cores: 2
