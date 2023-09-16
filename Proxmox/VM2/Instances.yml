@@ -2,6 +2,7 @@
   connection: local
   gather_facts: no
 
+
   tasks:
     - include_tasks: "{{ item }}"
       with_fileglob:
