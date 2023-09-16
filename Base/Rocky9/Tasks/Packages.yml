@@ -1,0 +1,23 @@
+---
+  - name: Install Epel Repo 
+    yum:
+      name: 
+        - epel-release
+      state: present
+  - name: Install Packages
+    dnf:
+      name: 
+        - iptables-services
+        - git
+        - mlocate
+        - wget
+        - vim
+        - net-tools
+        - htop
+        - ntp
+        - ntpdate
+        - libselinux-python 
+        - python3
+        - lvm2
+      state: present
+

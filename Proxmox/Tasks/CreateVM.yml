@@ -9,6 +9,8 @@
       proxmox_default_behavior: "no_defaults"
       full: no
       onboot: yes
+      description: "{{ Description | default('Create with Ansible') }}"
+
     register: vmCreated
 
   - name: Wait for the VM to be created | {{ VMName }}

@@ -14,6 +14,8 @@
       cores: "{{ CpuCoresCount | default('1') }}"
       cpus: "{{ CpuCount | default('1') }}"
       memory: "{{ MemorySize | default('256') }}"
+      hookscript: " {{ Snippet | default('snippets:snippets/RockySsh.sh') }}"
+      description: "{{ Description | default('Create with Ansible') }}"
 
 
       
