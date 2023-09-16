@@ -1,0 +1,31 @@
+- name: Create VM Rancher
+  include_tasks: ../Tasks/CreateVM.yml
+  vars:
+    - VMName: "K8s---Rancher"
+    - Cores: 2
+    - MemorySize: 4096
+    - CIDR: "192.168.1.50/24"
+    - NameServer: "192.168.1.254"
+    - AdditionalDisks:
+      - Name: "/var/lib/rancher"
+        Size: 10
+        Disk: "scsi1"     
+      - Name: "/var/lib/kubelet/pods"
+        Size: 10
+        Disk: "scsi2"      
+
+- name: Create VM K8s Master 01
+  include_tasks: ../Tasks/CreateVM.yml
+  vars:
+    - VMName: "K8s---Master01"
+    - Cores: 2
+    - MemorySize: 2048
+    - CIDR: "192.168.1.51/24"
+    - NameServer: "192.168.1.254"
+    - AdditionalDisks:
+      - Name: "/var/lib/rancher"
+        Size: 10
+        Disk: "scsi1"     
+      - Name: "/var/lib/kubelet/pods"
+        Size: 10
+        Disk: "scsi2"      

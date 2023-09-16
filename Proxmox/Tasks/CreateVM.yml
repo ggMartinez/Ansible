@@ -22,7 +22,8 @@
       api_host: "{{ proxmoxUrl }}"
       node: "{{ proxmoxNode }}"
       name: "{{ VMName }}"
-      cores: "{{ CpuCount | default('1') }}"
+      cores: "{{ Cores | default('1') }}"
+      sockets: "{{ Sockets | default('1') }}"
       memory: "{{ MemorySize | default('1024') }}"
       nameservers: "{{ NameServer | default('8.8.8.8') }}"
       searchdomains: "{{ SearchDomains | default('ggmartinez.duckdns.org') }}"
@@ -31,14 +32,14 @@
       update: true
     when : vmCreated.changed
   
-  - name: Add disk for {{ item.Name }} to VM | {{ VMName }}
+  - name: Adding disks to VM | {{ VMName }}
     community.general.proxmox_disk:
       api_user: "{{ proxmoxUser }}"
       api_password: "{{ proxmoxPassword }}"
       api_host: "{{ proxmoxUrl }}"
       name: "{{ VMName }}"
       disk: "{{ item.Disk }}"
-      storage: "{{ DiskStorage | default('local-lvm') }}"
+      storage: "{{ item.DiskStorage | default('local-lvm') }}"
       size: "{{ item.Size }}"
       state: present
     with_items:

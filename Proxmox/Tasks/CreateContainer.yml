@@ -1,0 +1,22 @@
+  - name: Create Container | {{ containerName }}
+    community.general.proxmox:
+      api_user: "{{ proxmoxUser }}"
+      api_password: "{{ proxmoxPassword }}"
+      api_host: "{{ proxmoxUrl }}"
+      node: "{{ proxmoxNode }}"
+      hostname: "{{ containerName }}"
+      ostemplate: "local:vztmpl/{{ TemplateName | default('rockylinux-9-default_20221109_amd64.tar.xz') }}"
+      netif: '{"net0":"name={{ InterfaceName | default("eth0") }},gw={{ Gateway | default("192.168.1.1")}},ip={{ CIDR }},bridge={{ NetworkBridge | default("vmbr0") }}"}'
+      pubkey: "{{ sshKey }}"
+      nameserver: "{{ NameServer | default('8.8.8.8')}}"
+      disk: "{{ DiskStorage | default('local-lvm')}}:{{ DiskSize | default('10') }}"
+      state: "{{ State | default('started') }}"
+      cores: "{{ CpuCoresCount | default('1') }}"
+      cpus: "{{ CpuCount | default('1') }}"
+      memory: "{{ MemorySize | default('256') }}"
+
+
+      
+
+
+

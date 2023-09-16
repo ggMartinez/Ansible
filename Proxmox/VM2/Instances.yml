@@ -3,22 +3,9 @@
   gather_facts: no
 
   tasks:
-    - include_tasks: ../Tasks/CreateVM.yml
-      vars:
-        - VMName: "Test"
-        - CpuCount: 2
-        - MemorySize: 2048
-        - CIDR: "192.168.1.70/24"
-        - NameServer: "192.168.1.254"
-        - AdditionalDisks:
-          - Name: "TestDisk"
-            Size: 10
-            Disk: "scsi1"          
+    - name: Create VMs
+      include_tasks: VMs.yml
 
-#    - include_tasks: "{{ item }}"
-#      with_fileglob:
-#        - VMs/*.yml
-
-#    - include_tasks: "{{ item }}"
-#      with_fileglob:
-#        - LXC/*.yml
+    - name: Create Containers
+      include_tasks: Containers.yml
+     
