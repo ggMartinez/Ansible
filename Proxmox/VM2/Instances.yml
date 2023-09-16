@@ -7,7 +7,6 @@
       with_fileglob:
         - VMs/*.yml
 
-  tasks:
     - include_tasks: "{{ item }}"
       with_fileglob:
         - LXC/*.
