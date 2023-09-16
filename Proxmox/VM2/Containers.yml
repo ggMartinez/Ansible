@@ -1,7 +1,7 @@
 - name: Create Container VSCode Web
   import_tasks: ../Tasks/CreateContainer.yml
   vars:
-    - ContainerName: "vs.ggmartinez.duckdns.org"
+    - ContainerName: "vscode.ggmartinez.duckdns.org"
     - CpuCoresCount: 1
     - MemorySize: 4096
     - CIDR: "192.168.1.60/24"
