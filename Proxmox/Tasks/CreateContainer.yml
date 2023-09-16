@@ -1,4 +1,4 @@
-  - name: Create Container | {{ containerName }}
+  - name: Create Container | {{ ContainerName }}
     community.general.proxmox:
       api_user: "{{ proxmoxUser }}"
       api_password: "{{ proxmoxPassword }}"
