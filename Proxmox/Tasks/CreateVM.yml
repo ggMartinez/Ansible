@@ -22,8 +22,8 @@
       api_host: "{{ proxmoxUrl }}"
       node: "{{ proxmoxNode }}"
       name: "{{ VMName }}"
-      cores: {{ CpuCount | default('1') }}
-      memory: {{ MemorySize | default('1024') }}
+      cores: "{{ CpuCount | default('1') }}"
+      memory: "{{ MemorySize | default('1024') }}"
       nameservers: "{{ NameServer | default('8.8.8.8') }}"
       searchdomains: "{{ SearchDomains | default('ggmartinez.duckdns.org') }}"
       ipconfig:
@@ -37,9 +37,9 @@
       api_password: "{{ proxmoxPassword }}"
       api_host: "{{ proxmoxUrl }}"
       name: "{{ VMName }}"
-      disk: {{ item.Disk }}
+      disk: "{{ item.Disk }}"
       storage: "{{ DiskStorage | default('local-lvm') }}"
-      size: {{ item.Size }}
+      size: "{{ item.Size }}"
       state: present
     with_items:
       - "{{ AdditionalDisks }}}}"
