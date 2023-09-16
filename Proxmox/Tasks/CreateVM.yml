@@ -27,7 +27,7 @@
       nameservers: "{{ NameServer | default('8.8.8.8') }}"
       searchdomains: "{{ SearchDomains | default('ggmartinez.duckdns.org') }}"
       ipconfig:
-        ipconfig0: 'ip={{ CIDR }},gw={{ Gateway }}'
+        ipconfig0: 'ip={{ CIDR }},gw={{ Gateway | default('192.168.1.1') }}'
       update: true
     when : vmCreated.changed
   
