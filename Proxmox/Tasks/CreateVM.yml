@@ -42,7 +42,7 @@
       size: "{{ item.Size }}"
       state: present
     with_items:
-      - "{{ AdditionalDisks }}}}"
+      - "{{ AdditionalDisks }}"
   
   - name: Start the VM | {{ VMName }}
     community.general.proxmox_kvm:
