@@ -6,5 +6,5 @@
     - MemorySize: 4096
     - CIDR: "192.168.1.60/24"
     - NameServer: "192.168.1.254"
-    - StateL "absent"
+    - State: "absent"
     
