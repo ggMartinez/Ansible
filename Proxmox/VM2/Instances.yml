@@ -5,11 +5,7 @@
   tasks:
     - name: Create VMs
       include_tasks: VMs.yml
-      async: 1
-      poll: 0
+
 
     - name: Create Containers
       include_tasks: Containers.yml
-        async: 1
-        poll: 0
-     
