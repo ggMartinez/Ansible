@@ -4,7 +4,7 @@
       api_password: "{{ proxmoxPassword }}"
       api_host: "{{ proxmoxUrl }}"
       node: "{{ proxmoxNode }}"
-      hostname: "{{ containerName }}"
+      hostname: "{{ ContainerName }}"
       ostemplate: "local:vztmpl/{{ TemplateName | default('rockylinux-9-default_20221109_amd64.tar.xz') }}"
       netif: '{"net0":"name={{ InterfaceName | default("eth0") }},gw={{ Gateway | default("192.168.1.1")}},ip={{ CIDR }},bridge={{ NetworkBridge | default("vmbr0") }}"}'
       pubkey: "{{ sshKey }}"
