@@ -1,5 +1,5 @@
 ---
-- hosts: Centos7
+- hosts: all
   tasks:
 
     - include_tasks: "Tasks/Hostname.yml"
