@@ -9,4 +9,4 @@
     systemd:
       state: started
       enabled: yes
-      name: node_exporter
+      name: prometheus-node-exporter
