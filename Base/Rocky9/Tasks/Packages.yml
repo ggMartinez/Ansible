@@ -14,10 +14,8 @@
         - vim
         - net-tools
         - htop
-        - ntp
-        - ntpdate
-        - libselinux-python 
         - python3
         - lvm2
+        - btop
       state: present
 
