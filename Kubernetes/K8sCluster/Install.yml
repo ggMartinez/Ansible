@@ -36,5 +36,44 @@
       state: absent
     changed_when: False
 
+    - name: Download Helm 
+      unarchive:
+        src: https://get.helm.sh/helm-v3.12.0-linux-amd64.tar.gz
+        dest: /tmp/
+        remote_src: yes
+      when: not HelmInstalled.stat.exists
+    
+    - name: Install Helm on /bin
+      copy:
+        src: /tmp/linux-amd64/helm
+        dest: /bin/helm 
+        remote_src: yes
+        mode: +x
+      when: not HelmInstalled.stat.exists
+
+    - name: Download and extract Kubecolor 
+      unarchive:
+        src: https://github.com/hidetatz/kubecolor/releases/download/v0.0.25/kubecolor_0.0.25_Linux_x86_64.tar.gz
+        dest: /usr/bin 
+        remote_src: yes
+    
+    - name: Add execution permission to kubecolor
+      file:
+        path: /usr/bin/kubecolor
+        mode: +x
+    
+    - name: Check if alias kubectl=kubecolor exists
+      shell: grep "alias kubectl=kubecolor" /root/.bashrc || true
+      register: AliasExists
+      changed_when: False
+
+
+    - name: Add alias kubectl=kubecolor
+      lineinfile:
+        path: /root/.bashrc
+        line: "alias kubectl=kubecolor"
+      when: not AliasExists.stdout
+
+
   become: yes
   become_user: root
