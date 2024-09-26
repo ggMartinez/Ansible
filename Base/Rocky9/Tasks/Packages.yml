@@ -15,6 +15,7 @@
         - net-tools
         - htop
         - python3
+        - python3-pip
         - lvm2
         - btop
       state: present
