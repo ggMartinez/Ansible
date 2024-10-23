@@ -16,16 +16,23 @@
     shell: sh /root/install-k3s.sh
     environment:
       INSTALL_K3S_VERSION: "{{ k3sVersion | default('') }}"
+      INSTALL_K3S_EXEC: "--no-deploy traefik"
     when: K3sActive.stdout != "active" 
 
   - name: Wait for kubernetes to initialize
     shell: sleep 120
     when: K3sActive.stdout != "active"
 
-  - name: Check if K3s is installed
+  - name: Install Nginx Ingress Controller 
+    kubernetes:
+      src: https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.7.1/deploy/static/provider/baremetal/deploy.yaml
+      state: present
+
+  - name: Check if Helm is installed
     stat:
       path: /bin/helm
     register: HelmInstalled
+
 
   - name: Download Helm
     unarchive:
