@@ -1,0 +1,16 @@
+
+- hosts: 127.0.0.1
+  connection: local
+  gather_facts: no
+
+  tasks:
+    - name: Create VMs
+      import_tasks: VMs.yml
+      async: 1
+      poll: 0
+
+
+    - name: Create Containers
+      import_tasks: Containers.yml
+      async: 1
+      poll: 0

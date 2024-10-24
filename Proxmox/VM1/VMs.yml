@@ -1,0 +1,16 @@
+- name: Create VM K8s Master 01
+  import_tasks: ../Tasks/CreateVM.yml
+  vars:
+    - VMName: "Workshop-K3s"
+    - Cores: 2
+    - MemorySize: 2048
+    - CIDR: "192.168.1.151/24"
+    - NameServer: "192.168.1.254"
+    - Template: "AlmaLinuxLatest"
+    - AdditionalDisks:
+      - Name: "/var/lib/rancher"
+        Size: 10
+        Disk: "scsi1"     
+      - Name: "/var/lib/kubelet/pods"
+        Size: 10
+        Disk: "scsi2"      
