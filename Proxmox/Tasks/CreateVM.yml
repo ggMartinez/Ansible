@@ -6,8 +6,9 @@
       node: "{{ proxmoxNode }}"
       name: "{{ VMName }}"
       clone: "{{ Template | default('Centos7') }}"
+      validate_certs: false
       proxmox_default_behavior: "no_defaults"
-      full: no
+      full: yes
       onboot: yes
       description: "{{ Description | default('Create with Ansible') }}"
 
