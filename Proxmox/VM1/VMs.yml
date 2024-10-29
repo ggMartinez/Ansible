@@ -7,11 +7,11 @@
     - CIDR: "192.168.1.151/24"
     - NameServer: "192.168.1.254"
     - Template: "AlmaLinuxLatest"
-    - Storage: "storage"
     - AdditionalDisks:
       - Name: "/var/lib/rancher"
         Size: 10
         Disk: "scsi1"     
+        Storage: "storage"
       - Name: "/var/lib/kubelet/pods"
         Size: 10
         Disk: "scsi2"      
