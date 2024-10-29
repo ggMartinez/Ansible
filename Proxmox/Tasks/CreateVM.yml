@@ -3,7 +3,6 @@
       api_user: "{{ proxmoxUser }}"
       api_password: "{{ proxmoxPassword }}"
       api_host: "{{ proxmoxUrl }}"
-      api_port: "{{ proxmoxPort | default('8006') }}"
       node: "{{ proxmoxNode }}"
       name: "{{ VMName }}"
       clone: "{{ Template | default('Centos7') }}"
